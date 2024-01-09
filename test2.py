@@ -1,13 +1,12 @@
-import os.path
-import time
+# import os.path
 from typing import List, Dict, Union
 
 from astropy.coordinates import get_body
 from astropy.coordinates import solar_system_ephemeris, EarthLocation, get_constellation
 from astropy.time import Time
-from PIL import Image
+# from PIL import Image
 
-from pathlib import Path
+# from pathlib import Path
 
 ZODIAC_LIST = ['Aquarius', 'Aries', 'Cancer', 'Capricornus', 'Gemini', 'Leo', 'Libra', 'Pisces', 'Sagittarius',
                'Scorpius', 'Taurus', 'Virgo']
@@ -77,47 +76,47 @@ def invert_dictionary_map(my_map):
     return inv_map
 
 
-def overlap_images(image1_path, image2_path):
-    """
-    Overlaps two png images
-    :param image1_path: str
-            Image 1 path
-    :param image2_path: str
-            Image 2 path
-    :return:
-    """
-    # Open the images
-    img1 = Image.open(image1_path)
-    img2 = Image.open(image2_path)
+# def overlap_images(image1_path, image2_path):
+#     """
+#     Overlaps two png images
+#     :param image1_path: str
+#             Image 1 path
+#     :param image2_path: str
+#             Image 2 path
+#     :return:
+#     """
+#     # Open the images
+#     img1 = Image.open(image1_path)
+#     img2 = Image.open(image2_path)
+#
+#     # Ensure both images have an alpha channel (transparency)
+#     img1 = img1.convert("RGBA")
+#     img2 = img2.convert("RGBA")
+#
+#     # Paste img2 onto img1 at the specified position
+#     img1.paste(img2, (0, 0), img2)
+#
+#     # Save the result
+#     return img1
 
-    # Ensure both images have an alpha channel (transparency)
-    img1 = img1.convert("RGBA")
-    img2 = img2.convert("RGBA")
 
-    # Paste img2 onto img1 at the specified position
-    img1.paste(img2, (0, 0), img2)
-
-    # Save the result
-    return img1
-
-
-def create_constell_img(const_dict: dict, base_dir: Path):
-    """
-    Creates full constellation image
-    :param base_dir: Path
-            Path to the base dir with images
-    :param const_dict: dict
-            Constellation dictionary
-    :return:
-    """
-    base_img = Image.open(base_dir / "base.png")
-    base_img = base_img.convert("RGBA")
-
-    for k, v in const_dict.items():
-        for planet in v:
-            base_img = overlap_images(base_img, os.path.join(k, planet + ".png"))
-
-    base_img.save("static/constellation_img.png", "PNG")
+# def create_constell_img(const_dict: dict, base_dir: Path):
+#     """
+#     Creates full constellation image
+#     :param base_dir: Path
+#             Path to the base dir with images
+#     :param const_dict: dict
+#             Constellation dictionary
+#     :return:
+#     """
+#     base_img = Image.open(base_dir / "base.png")
+#     base_img = base_img.convert("RGBA")
+#
+#     for k, v in const_dict.items():
+#         for planet in v:
+#             base_img = overlap_images(base_img, os.path.join(k, planet + ".png"))
+#
+#     base_img.save("static/constellation_img.png", "PNG")
 
 
 if __name__ == '__main__':
